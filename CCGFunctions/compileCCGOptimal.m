@@ -1,14 +1,34 @@
 function [F,p,A,b,G,c] = compileCCGOptimal(Z)
-%COMPILECNB Returns the constraint set associated with the Constrained Norm
-%Ball Z.
-%   p is the variable
-%
-%   xi is a auxiliary variable
+% compileCCGOptimal - Function returning a Yalmip constraint set representing the
+% Constrained Convex Generator with the parameters defined by sdpvars.
+%   
+%   Z = {z = G*xi+c: A*xi = b, xi_j \in C_j, forall j}
 % 
-%   F = [ ||xi1||_inf <= 1, 
-%         ||xi2||_2   <= 1, 
-%          A * xi == b, 
-%          p == G * xi + c];
+% Syntax:  
+%    [F,p] = compileCCG(Z)
+%
+% Inputs:
+%    Z - Constrained Convex Generator
+%
+% Outputs:
+%    F - Yalmip constraint set
+%    p - sdpvar representing a point in Z.
+%    A - sdpvar matrix linear constraint Constrained Convex Generator
+%    b - sdpvar vector linear constraint Constrained Convex Generator
+%    G - sdpvar generator matrix Constrained Convex Generator
+%    c - sdpvar centre Constrained Convex Generator
+% 
+% Reminder - This function serves the sole purpose of creating an optimizer
+% featuring a terminal set that varies with each run. Running this function
+% within a singularity environment is not feasible.
+% Other m-files required: none.
+% Subfunctions: none
+% MAT-files required: none
+%
+% See also: none.
+
+
+%------------- BEGIN CODE --------------
 
 n = size(Z.G,1);
 

@@ -1,4 +1,4 @@
-function [path,analyse] = MPCSimulation(controller,x0,Nc,model,Xj_list,N,terminal,idx,set_max) 
+function [path,analyse] = MPCSimulation(controller,x0,steps,model,Xj_list,N,terminal,idx,set_max) 
 % MPCSimulation - Function that simulates the operation of a MPC 
 % for a given system
 %
@@ -8,7 +8,7 @@ function [path,analyse] = MPCSimulation(controller,x0,Nc,model,Xj_list,N,termina
 % Inputs:
 %    controller - cell with YALMIP optimizers with different horizons
 %    x0 - initial state
-%    Nc - number of convergence steps
+%    steps - number of simulation steps
 %    model - struct with the system model A and B matrices
 %    Xj_list - sequence of reachable sets 
 %    N - prediction horizon
@@ -26,7 +26,6 @@ function [path,analyse] = MPCSimulation(controller,x0,Nc,model,Xj_list,N,termina
 %------------- BEGIN CODE --------------
 
 % Initialization
-steps = N*Nc-1;
 path = x0;  
 analyse = []; 
 i = 1; % auxiliar variable to know which optimizer run
@@ -44,7 +43,7 @@ end
 % runs until the specified number of steps are done or MPC reaches mRPI
 for kk = length(Xj_list)-idx : steps
     % Case where the number of steps to mRPI < N
-    
+    j = max()
     if N+kk+1 > length(Xj_list)
         new_Xf = AddZeros(Xj_list{1}, set_max);
 %         i = N+kk+1-length(Xj_list)+1;

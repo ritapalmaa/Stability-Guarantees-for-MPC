@@ -19,19 +19,22 @@ The current directory contains the source code for MPC in 2d (test concept) and 
 
   ## CCGFunctions
   This folder contains functions used related with CCGs.
+   - `boxCCG.m`: FALTA ESCREVER
    - `CCGCartesian.m`: Returns the Cartesian Product between 2 CCGs.
+   - `CCGInnerRPI.m`: FALTA ESCREVER
    - `CCGIntersect.m`: From the setOperations by danielmsilvestre. Returns the intersection between 2 CCGs after a linear map.
    - `CCGIntersect2Sets.m`: Adapted from the setOperations by danielmsilvestre. Returns the intersection between 2 CCGs.
    - `CCGLinMap.m`: From the setOperations by danielmsilvestre. Returns the linear map between a matrix and a CCG with the addition of a vector.
-   - `CCGLinMapWithoutVector.m`: Adapted from the setOperations by danielmsilvestre. Returns the linear map between a matrix and a CCG.
+   - `CCGMinkowskiSum.m`: FALTA ESCREVER
+   - `CCGOverbound.m`: FALTA ESCREVER
    - `CCGReduction.m`: Returns the Minkowski Difference of a CCG considering a specific value for reduction.
    - `compileCCG.m`: by danielmsilvestre. Compile the CCG with the tuple information. Returns the constrained set associated with the constrained norm
    - `compileCCGOptimal.m`: Adapted from `compileCCG.m` by danielmsilvestre. Compile the CCG without the explicit tuple information (only with its size). Returns the constrained set associated with the constrained norm.
 
-   ## MPCFunctions
-   This folder contains functions used related with MPC.
-    - `MPCFormulation.m`: Formulates the cost function and constraints for the MPC with a variable terminal set. Returns the cost function, the constraints and the manageble parameters for varying the terminal set.
-    - `MPCSimulation.m`: Simulates an mpc trajectory considering a specific initial condition. Returns the controller's trajectory and the diagnostics of each step.
+  ## MPCFunctions
+  This folder contains functions used related with MPC.
+   - `MPCFormulation.m`: Formulates the cost function and constraints for the MPC with a variable terminal set. Returns the cost function, the constraints and the manageble parameters for varying the terminal set.
+   - `MPCSimulation.m`: Simulates an mpc trajectory considering a specific initial condition. Returns the controller's trajectory and the diagnostics of each step.
 
   ## Functions
   This folder contains auxiliary functions that simplify the methodology.
@@ -44,6 +47,8 @@ The current directory contains the source code for MPC in 2d (test concept) and 
    - `Plot.m`: Plot the sequence of sets in 2D and 3D.
    - `Plot2DIn3D.m`: Plot specifically a 3D visualization for a sequence of sets in 2D.
    - `PlotSetObstacles.m`: Plot above the previous visualization of the sequence without the obstacle introduction. It's a good feature to visualize the impact of the obstacle.
+   - `PlotSetObstacles3D.m`: FALTA ESCREVER
+   - `PlotSets.m`: FALTA ESCREVER
    - `SetReduction.m`: Compute the value that need to be reduced around a set considering the solver's numerical error. Returns the CCG reduced.
 
 
