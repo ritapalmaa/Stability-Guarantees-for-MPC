@@ -1,9 +1,9 @@
-function list = BackwardReachabilitySets(RPI,X,U,model,nx,N_c,steps,N)
+function list = BackwardReachabilitySets(RPI,X,U,model,nx,Nc,N)
 % BackwardReachabilitySets - Function that calculates the backwards 
 % sequence of reachable states 
 %  
 % Syntax:  
-%    list = BackwardReachabilitySets(RPI,X,U,model,nx,N_c,steps,N)
+%    list = BackwardReachabilitySets(RPI,X,U,model,nx,Nc,N)
 %
 % Inputs:
 %    RPI - Constrained Convex Generator for RPI
@@ -11,8 +11,7 @@ function list = BackwardReachabilitySets(RPI,X,U,model,nx,N_c,steps,N)
 %    U - Constrained Convex Generator of input constraints
 %    model - struct with the system model A and B matrices
 %    nx - state dimensions
-%    N_c - number of converge steps
-%    steps - number of simulation steps
+%    Nc - number of converge steps
 %    N - prediction horizon
 %
 % Outputs:
@@ -25,10 +24,10 @@ function list = BackwardReachabilitySets(RPI,X,U,model,nx,N_c,steps,N)
 %------------- BEGIN CODE --------------
 
 % Initialization
-list = cell(steps+1,1); 
+list = cell(Nc*N+1,1); 
 Xj = RPI;
 
-for i = 1 : (N_c*N) +1
+for i = 1 : (Nc*N)+1
     list{i} = Xj;
     Xj_prev_est = CCGMinkowskiSum(CCGLinMap(model.A^-1,Xj,zeros(nx,1)),CCGLinMap(-(model.A^-1)*model.B,U,zeros(nx,1))); % est means estimate
     Xj = CCGIntersect2Sets(Xj_prev_est,X);

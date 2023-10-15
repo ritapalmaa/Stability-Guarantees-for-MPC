@@ -3,12 +3,11 @@ function Xj_list_obs = ForwardReachabilitySets(idx,model,U,Xj_list,O)
 % reachable states adjusting these sets when an obstacle is faced
 %  
 % Syntax:  
-%    Xj_list_obs = ForwardReachabilitySets(idx_obs,model,X,U,Xj_list,Obs)
+%    Xj_list_obs = ForwardReachabilitySets(idx,model,U,Xj_list,Obs)
 %
 % Inputs:
 %    idx - index in the sequence where obstacle is faced
 %    model - struct with the system model A and B matrices
-%    X - Constrained Convex Generator of state constraints
 %    U - Constrained Convex Generator of input constraints
 %    Xj_list - sequence of reachable sets 
 %    O - Constrained Convex Generator for the obstacle
@@ -43,4 +42,3 @@ for i = flip (1 : length(Xj_list))
     end
 end
 end
-

@@ -7,9 +7,9 @@ function X = CCGOverbound(set)
 %
 % Inputs:
 %    set - data structure with:
-%       n - dimension
-%       type - type of simple set
-%       radius - length of the set
+%    n - dimension
+%    type - type of simple set
+%    radius - length of the set
 %
 % Outputs:
 %    X - for any ball it will output a l_inf ball of length radius

@@ -5,14 +5,13 @@ clc, clear;
 yalmip('clear');
 
 addpath('CCGFunctions');
-n_dimensions = 2; % 2-dimensions or 3-dimensions
-
+n_dimensions = 3; % 2-dimensions or 3-dimensions (drone)
 %% Comparison CZs vs CCGs
 % Initialization
 if n_dimensions == 2
     N = 4;
-    convergence_steps = 1; 
-    simulation_steps = N*convergence_steps-1;
+    Nc = 1; 
+    simulation_steps = N*Nc-1;
 
     model.A = [2, 1; 0, 2]; model.B = [1, 0; 0, 1];
     nx = 2; nu = 2;
@@ -37,18 +36,18 @@ if n_dimensions == 2
     Acl = model.A - model.B * lqr.K;
 else
     nx = 9; nu = 3; N = 4;
-    convergence_steps = 3; 
-    simulation_steps = N*convergence_steps-1;
+    Nc = 3; 
+    simulation_steps = N*Nc-1;
     Ts = 0.1; %[s]
     [model,X,U,D,RPI,lqr,Acl] = InitDrone(nx,nu,Ts,simulation_steps);
 end
 
 % Compute Backward reachable sets with CZs and CCGs
-Xj_list = cell(convergence_steps*N+1,1); CZ_Xj_list = cell(convergence_steps*N+1,1); 
+Xj_list = cell(Nc*N+1,1); CZ_Xj_list = cell(Nc*N+1,1); 
 Xj = RPI; CZ_Xj = RPI;
 
 % Backward reachability sets
-for i = 1 : (convergence_steps*N) +1
+for i = 1 : (Nc*N) +1
     Xj_list{i} = Xj; CZ_Xj_list{i} = Xj;
     Xj_prev_est = CCGMinkowskiSum(CCGLinMap(model.A^-1,Xj,zeros(nx,1)),CCGLinMap(-(model.A^-1)*model.B,U,zeros(nx,1))); % est means estimate
     CZ_Xj_prev_est = CZMinkowskiSum(CZLinMap(model.A^-1,Xj,zeros(nx,1)),CZLinMap(-(model.A^-1)*model.B,U,zeros(nx,1))); 
@@ -110,9 +109,9 @@ else
     ylabel('a_y','FontSize',fontSize+2); 
     zlabel('a_z','FontSize',fontSize+2);
 
-    i = length(Xj_list);
     % Plot of the Backward reachability sets
     % for i = 1 : length(Xj_list) 
+    i = length(Xj_list);
         if mod(i-1,N) == 0
             color = 2;
         else

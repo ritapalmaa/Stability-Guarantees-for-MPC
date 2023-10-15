@@ -46,4 +46,3 @@ for i = flip(1 : length(Xj_list_obs))
     idx = idx+1;
 end
 end
-

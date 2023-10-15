@@ -1,6 +1,5 @@
 function Y = CCGLinMap(A,X,t)
-% CCGLinMap - Function that calculates the linear map AX + t for a
-% Constrained Convex Generator X.
+% CCGLinMap - Function that calculates the linear map AX + t 
 %  
 % Syntax:  
 %    Y = CCGLinMap(A,X,t)
@@ -64,5 +63,4 @@ if isfield(X,'sidx')
     Y.weights = X.weights;
     Y.freeTerm = X.freeTerm;
 end
-
 end

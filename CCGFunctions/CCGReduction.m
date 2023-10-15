@@ -42,6 +42,5 @@ for i = 1 : size(Z.G,1)
             Z.G(i,j) = Z.G(i,j) * (1-a/d{i});
     end
 end
-
 end
 

@@ -2,7 +2,7 @@ function [model,X,U,D,RPI,lqr,Acl] = Init2D(nx,nu,Ts,steps)
 % Init2D - Function that initialize and set up the parameters in 2D
 %
 % Syntax:  
-%    [model,X,U,D,RPI,lqr,Acl] = Init2D(nx,nu,Ts,simulation_steps)
+%    [model,X,U,D,RPI,lqr,Acl] = Init2D(nx,nu,Ts,steps)
 %
 % Inputs:
 %    nx - state dimensions
@@ -53,9 +53,5 @@ Acl = model.A - model.B * lqr.K;
 
 % Computing Terminal Set Xf - Feasible & Positive Invariant - by LQR
 RPI = CCGInnerRPI(Acl, D, steps); 
-% using simple RPI made by hand
-% RPI.G = 0.1*eye(nx); RPI.c = zeros(nx,1); 
-% RPI.A = zeros(0,nx); RPI.b = zeros(0,1); 
-% RPI.type = Inf; RPI.idx = nx;
 end
 

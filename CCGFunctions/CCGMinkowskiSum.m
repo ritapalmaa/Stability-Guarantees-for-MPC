@@ -1,6 +1,5 @@
 function Z = CCGMinkowskiSum(X,Y)
-% CCGMinkowskiSum - Function that calculates the Minkowski sum of two
-% Constrained Convex Generators.
+% CCGMinkowskiSum - Function that calculates the Minkowski sum of two CCGs
 % 
 % Syntax:  
 %    Z = CCGMinkowskiSum(X,Y)
@@ -71,9 +70,7 @@ end
 % Only required to include sidx, weights and freeterms if at least one is
 % the result of a convex hull operation. Otherwise omit and keep the
 % structure simpler.
-
 if isfield(X,'sidx') || isfield(Y,'sidx')
-    
     if ~isfield(X,'sidx')
         X.sidx = [];
         X.weights = [];
@@ -89,7 +86,5 @@ if isfield(X,'sidx') || isfield(Y,'sidx')
     Z.sidx = [X.sidx;Y.sidx];
     Z.weights = [X.weights;Y.weights];
     Z.freeTerm = [X.freeTerm,Y.freeTerm];
-    
 end
-
 end

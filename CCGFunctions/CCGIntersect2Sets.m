@@ -76,6 +76,4 @@ end
 if isfield(Y,'sidx')
     error('Not implemented intersection with Y set resulting from a convex hull operation');
 end
-
-
 end

@@ -46,10 +46,9 @@ title('Acceleration','FontSize',fontSize+4);
 
 % Compile & plot pre-reduction set
 [set_Xj_pre,a_Xj_pre] = compileCCG(Xj_pre);
-
-% subplot(1,3,1); plot(set_Xj_pre,a_Xj_pre(1:nu),'c','HandleVisibility','off');
-% subplot(1,3,2); plot(set_Xj_pre,a_Xj_pre(nu+1:nu*2),'c','HandleVisibility','off');
-% subplot(1,3,3); plot(set_Xj_pre,a_Xj_pre(nu*2+1:nx),'c','HandleVisibility','off');
+subplot(1,3,1); plot(set_Xj_pre,a_Xj_pre(1:nu),'c');
+subplot(1,3,2); plot(set_Xj_pre,a_Xj_pre(nu+1:nu*2),'c');
+subplot(1,3,3); plot(set_Xj_pre,a_Xj_pre(nu*2+1:nx),'c');
 
 % Compile & plot sequence of sets (including RPI)
 for i = flip(1 : length(Xj_list))
@@ -66,4 +65,3 @@ for i = flip(1 : length(Xj_list))
     plot(set_Xj_fake,a_Xj_fake(nu*2+1:nx),plotargs{arg_1});
 end
 end
-

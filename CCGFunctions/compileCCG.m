@@ -66,5 +66,4 @@ for i = 1:length(Z.idx)
     F = [F, norm(xi(pointer + (1:Z.idx(i)),1), Z.type(i)) <= 1];
     pointer = pointer + Z.idx(i);
 end
-
 end

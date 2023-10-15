@@ -35,7 +35,7 @@ function [constraints, objective,x,u,G,c,A,b] = MPCFormulation(model,X,U,nx,nu,l
 %------------- BEGIN CODE --------------
 
 % Define the optimization variables
-u = sdpvar(repmat(nu,1,N),ones(1,N));
+u = sdpvar(repmat(nu,1,N),ones(1,N)); 
 x = sdpvar(repmat(nx,1,N+1),ones(1,N+1));
 
 objective = 0; constraints = []; 
@@ -65,7 +65,6 @@ for k = 1 : N
                        set_X_test, set_U_test
                        ]; 
     end
-
 end
 
 % Add the terminal cost

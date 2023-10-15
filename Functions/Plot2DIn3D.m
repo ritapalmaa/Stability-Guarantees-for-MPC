@@ -18,6 +18,7 @@ function Plot2DIn3D(Xj_pre,Xj_list,nx,nu,N)
 
 %------------- BEGIN CODE --------------
 
+% Initialization
 idx = 0; % auxiliar variable for plots
 
 % Figure setup
@@ -118,4 +119,3 @@ view(azimuth, elevation);
 xlim([0 length(Xj_list)+1]);
 box off;
 end
-

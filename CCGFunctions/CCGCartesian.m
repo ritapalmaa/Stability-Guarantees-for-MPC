@@ -1,6 +1,5 @@
 function Z = CCGCartesian(A,B)
 % CCGCartesian - Function that calculates the cartesian product A x B
-% both Constrained Convex Generators.
 %  
 % Syntax:  
 %    Z = CCGCartesian(A,B)
@@ -10,7 +9,8 @@ function Z = CCGCartesian(A,B)
 %    B - Constrained Convex Generator
 %
 % Outputs:
-%    Z - Constrained Convex Generator that Z = {z = (A.G 0; 0 B.G)*x + (A.c; B.c) : (A.A 0; 0 B.A)*xi = (A.b; B.b), xi_j \in C_j, forall j}
+%    Z - Constrained Convex Generator that Z = {z = (A.G 0; 0 B.G)*x + ...
+%      (A.c; B.c) : (A.A 0; 0 B.A)*xi = (A.b; B.b), xi_j \in C_j, forall j}
 %
 % Example: 
 %    m = 10;

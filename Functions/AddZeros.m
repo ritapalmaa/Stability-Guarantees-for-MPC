@@ -19,7 +19,7 @@ function X = AddZeros(X, Xmax)
 
 %------------- BEGIN CODE --------------
 
-if size(X.G) == size(Xmax)
+if size(X.G) == size(Xmax.G)
     return
 else
     X.G = [X.G zeros(size(X.G,1),length(Xmax.G)-length(X.G))];

@@ -8,7 +8,7 @@ function RPI = CCGInnerRPI(A, U, N)
 % Inputs:
 %    A - closed-loop matrix
 %    U - Constrained Convex Generator of disturbances
-%    N - Horizon
+%    N - Prediction horizon
 %
 % Outputs:
 %    RPI - Constrained Convex Generator 
@@ -39,32 +39,23 @@ function RPI = CCGInnerRPI(A, U, N)
 
 %------------- BEGIN CODE --------------
 
+% Initialization
+n = size(A,1);
+
 % Get a box set since currently it only supports lp balls
 if ~isempty(U.A) 
     U = boxCCG(U);
 end
 
-% Value equivalent to infinity
-Kinf = 1000;
-
-% Numerically calculate overbound for the remainder of the expression (NEED
-% TO BE IMPROVED)
-rest = zeros(length(A)); 
-for i = N+1:Kinf
-    rest = rest + A^i;
+% Numerically calculate overbound for the remainder of the expression
+rest = inv(eye(size(A))-A);
+for i = 0:N
+    rest = rest-A^i;
 end
-
-n = size(A,1);
-
-Rest.G = rest*diag(max(U.G,[],2));
-Rest.c = zeros(n,1);
-Rest.A = zeros(0,n);
-Rest.b = zeros(0,1);
-Rest.type = 2; 
-Rest.idx = n;
+Rest = CCGLinMap(rest,U,zeros(n,1));
 
 % Explicitly calculate the RPI set
-RPI = U;
+RPI = U; 
 for i = 1:N
     RPI = CCGMinkowskiSum(RPI, CCGLinMap(A^i,U,zeros(n,1)));
 end

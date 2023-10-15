@@ -9,7 +9,7 @@ function Zbox = boxCCG(Z)
 %    Z - Constrained Convex Generator
 %
 % Outputs:
-%    Zbox - Constrained Convex Generator matching an Interval
+%    Zbox - Constrained Convex Generator matching an interval
 %
 % Example: 
 %    m = 10;
@@ -49,6 +49,5 @@ end
 
 Zbox = CCGOverbound(getSimpleSets('ball',n,0.5*(limits(:,2)-limits(:,1)),inf));
 Zbox.c = 0.5*(limits(:,2)+limits(:,1));
-
 end
 

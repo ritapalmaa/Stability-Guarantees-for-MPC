@@ -1,12 +1,12 @@
-function idx = FindSet(Xj_list,x0)
-% FindSet - Function that identifies the index of x0 in the sequence Xj_list 
+function idx = FindSet(list,x)
+% FindSet - Function that identifies the index of x in the sequence Xj_list 
 %
 % Syntax:  
-%    idx = FindSet(Xj_list,x0)
+%    idx = FindSet(Xj_list,x)
 %
 % Inputs:
-%    Xj_list - sequence of reachable sets 
-%    x0 - initial state
+%    list - sequence of reachable sets 
+%    x - state
 %
 % Outputs:
 %    idx - index in the sequence where x0 belongs
@@ -18,25 +18,24 @@ function idx = FindSet(Xj_list,x0)
 %------------- BEGIN CODE --------------
 
 % Initialization
-ops = sdpsettings('solver','GUROBI');%, 'gurobi.BarConvTol', 1e-6);
-vector = sdpvar(size(x0,1),size(x0,2)); 
+ops = sdpsettings('solver','gurobi');
+vector = sdpvar(size(x,1),size(x,2)); 
 in = {vector};
 
-for i = 1 : size(Xj_list,1)
+for i = 1 : size(list,1)
     % Compile the Yalmip constraint set and point
-    [set,a] = compileCCG(Xj_list{i});
+    [set,a] = compileCCG(list{i});
     out = {a};
     % Create the optimizer to search in each set
     find = optimizer([set, a == vector],0,ops,in,out);
-    [~, flag] = find{x0};
-%     disp(flag);
+    [~, flag] = find{x};
         if flag == 0
             idx = i;
             fprintf('x0 belongs to set idx = %i\n', idx)
             return
         end
 end
-idx = size(Xj_list,1);
+idx = 0;
 disp('Does not belong to any set');
 end
 

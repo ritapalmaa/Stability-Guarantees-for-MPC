@@ -59,7 +59,6 @@ function nextX = CCGIntersect(C, X, Y)
 nextX.G = [X.G zeros(size(X.G,1) , size(Y.G,2))];
 nextX.c = X.c;
 nextX.A = [blkdiag(X.A,Y.A);C*X.G -Y.G];
-
 nextX.b = [X.b;Y.b;Y.c - C*X.c];
 
 if isinf(X.type(end)) && isinf(Y.type(1))
@@ -79,6 +78,4 @@ end
 if isfield(Y,'sidx')
     error('Not implemented intersection with Y set resulting from a convex hull operation');
 end
-
-
 end

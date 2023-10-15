@@ -5,7 +5,7 @@ function nextX = SetReduction(maxError,X,nx,nu)
 %    nextX = SetReduction(maxError,X,nx,nu)
 %
 % Inputs:
-%    maxError - solver's 
+%    maxError - solver's error
 %    X - Constrained Convex Generator
 %    nx - state dimensions
 %    nu - input dimensions
