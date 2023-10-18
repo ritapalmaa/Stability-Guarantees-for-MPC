@@ -1,6 +1,6 @@
 function PlotSetObstIdx(Xj_list,Obs,idx,N)
 % PlotSetObstIdx - Function that plots the set X and O from the sequence 
-% considering the obstacle introduction at idx_obs
+% considering the obstacle introduction at idx
 % 
 % Syntax:  
 %    PlotSetObstIdx(Xj_list,Obs,idx,N)

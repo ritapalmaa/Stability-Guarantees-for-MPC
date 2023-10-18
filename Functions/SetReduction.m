@@ -20,9 +20,9 @@ function nextX = SetReduction(maxError,X,nx,nu)
 %------------- BEGIN CODE --------------
 
 % Define the set of error in xi
-E.G = maxError*eye(size(X.G,1),size(X.G,2)); E.c = zeros(nx,1);
+E.G = maxError*eye(nx); E.c = zeros(nx,1);
 E.A = zeros(0,nx); E.b = zeros(0,1); 
-E.type = Inf; E.idx = size(X.G,2);
+E.type = Inf; E.idx = nx;
 
 % Calculate the impact of the error in the generators
 reduction_set = CCGLinMap(X.G',E,zeros(size(X.G,2),1));

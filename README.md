@@ -1,20 +1,29 @@
 #  Dissertation Repository: Stability Guarantees for Model Predictive Controllers 
 This repository contains the code developed for the dissertation, titled "Stability Guarantees for Model Predictive Controllers", submitted to obtain the Master of Science Degree in Electrical and Computer Engineering.
 The research was supervised by Prof. Daniel de Matos Silvestre and Prof. Rita Maria Mendes de Almeida Correia da Cunha.
-The code implements a Model Predictive Control (MPC) approach to generate optimal trajectories for autonomous drones while avoiding obstacles and ensuring safe navigation.
+The code implements a Model Predictive Control (MPC) approach to generate optimal trajectories for autonomous drones, ensuring the stability of the controller by the innovative application of Constrained Convex Generators (CCGs) as the primary method for characterising the system's sets. 
 
 # Abstract
-ADICIONAR
+FALTA REVER
+The advancement of technology and the interest in autonomous spacecraft have guided a new era of space exploration. 
+Within the aerospace systems domain, a demand persists for control strategies characterised by stability and robustness.
+This dissertation explores the potential impact of MPC algorithms on spacecraft stability and performance optimisation. 
+While MPC holds promise for enhancing spacecraft control, current strategies often exhibit a degree of conservatism at vehicle measurements and parameters. 
+Hence, an innovative approach is introduced by incorporating CCGs for defining the system's sets, which is rooted in the CZ formulation, ensuring that the generators adhere to a convex set, thus providing flexibility in defining sets.
+Attention is devoted to both the theoretical framework and the practical implementation of the region of attraction, with a rigorous examination of its conservatism, which bears particular significance, given that the desired launching position falls within its bounds.
+The research studies the concept of recursive feasibility within the MPC framework, driven by the definition of the region of attraction and its inherent invariance, maintaining the MPC's recursive feasibility.
+This novel process allows spacecraft to operate at their limits without the risk of infeasibility and enhancing safety and reliability.
+These advancements are crucial in safeguarding substantial investments in space exploration, unlocking new frontiers and redefining the possibilities for this domain.
 
 ## Keywords 
-ADICIONAR
+Model Predictive Control (MPC), Constrained Convex Generators (CCGs), Region of Attraction, Robust Positively Invariant (RPI), Recursive Feasibility, Stability
 
 # Code organisation
 The code in this repository is organised into the following directories and files:
 
 The current directory contains the source code for MPC in 2D (test concept) and 3D (drone test).
-  - `MPC2D.m`: Implements MPC with different initial conditions in a Monte Carlo simulation, including set reduction of the region of attraction and obstacle avoidance.
-  - `MPC3D.m`: Applies the same methodology to a 3D drone environment. 
+  - `MPC3D.m`: Implements the proposed MPC with different initial conditions in a Monte Carlo simulation.
+  - `MPC2D.m`: Applies the same methodology to a 2D system.
   - `ComparisonCZvsCCG.m`: Compares results for the region of attraction using  CZs and CCGs in both 2D and 3D.
 
   ## CCGFunctions
@@ -46,23 +55,23 @@ The current directory contains the source code for MPC in 2D (test concept) and 
    - `InitDrone.m`: Returns the model and the sets needed to initializate the `MPC3D.m`.
    - `PlotGeral.m`: Plot the sequence of sets in 2D and 3D.
    - `Plot2DIn3D.m`: Plot specifically a 3D visualization for a sequence of sets in 2D.
-   - `PlotSetObstacles.m`: Plot above the previous visualization of the sequence without the obstacle introduction. It's a good feature to visualize the impact of the obstacle.
+   - `PlotSetObstacles.m`: Plot the new sequence with obstacles overlaped with the previous one. It is a good feature to visualize the impact of the obstacle.
    - `PlotSetObstacles3D.m`: Adapted from `PlotSetObstacles.m` for 3D sets.
-   - `PlotSetObsIdx.m`: ESCREVER
+   - `PlotSetObsIdx.m`: Plot the set Xi and Oi from the sequence considering the obstacle introduction at i
    - `PlotSets.m`: Plot the constraint sets.
    - `SetReduction.m`: Compute the value that need to be reduced around a set considering the solver's numerical error. Returns the CCG reduced.
 
 # Instructions
-## Execution Guidelines
-
-ADICIONAR
-
 ## Requirements
 
-ADICIONAR
+In order to run this code, the external solver GUROBI (https://www.gurobi.com/downloads/gurobi-software/) and MOSEK (https://www.mosek.com/downloads/) should be install on MATLAB.
 
 # Results
 The document that has been submitted can be found in the primary directory, and it contains all the presented results.
+
+## Sequence of backwards reachable sets
+The figure below displays the sets generated within the sequence, ranging from the region of attraction (larger set) to the mRPI (smaller set).
+![](Outputs/sets.gif)
 
 ## MPC Trajectory
 The following illustration is a representation of the MPC prediction at each discrete-time instant, followed by the final trajectory.

@@ -3,7 +3,7 @@ close all;
 %%
 clc, clear;
 yalmip('clear');
-
+%%
 addpath('CCGFunctions');
 n_dimensions = 3; % 2-dimensions or 3-dimensions (drone)
 %% Comparison CZs vs CCGs
@@ -91,23 +91,23 @@ else
     subplot(1,3,1); hold on; 
     ax = gca(); ax.FontSize = fontSize;
     title('Position','FontSize',fontSize+4);
-    xlabel('p_x','FontSize',fontSize+2); 
-    ylabel('p_y','FontSize',fontSize+2);
-    zlabel('p_z','FontSize',fontSize+2);
+    xlabel('p_x [m]','FontSize',fontSize+2); 
+    ylabel('p_y [m]','FontSize',fontSize+2);
+    zlabel('p_z [m]','FontSize',fontSize+2);
 
     subplot(1,3,2); hold on; 
     ax = gca(); ax.FontSize = fontSize;
     title('Velocity','FontSize',fontSize+4);
-    xlabel('v_x','FontSize',fontSize+2); 
-    ylabel('v_y','FontSize',fontSize+2);
-    zlabel('v_z','FontSize',fontSize+2);
+    xlabel('v_x [m/s]','FontSize',fontSize+2); 
+    ylabel('v_y [m/s]','FontSize',fontSize+2);
+    zlabel('v_z [m/s]','FontSize',fontSize+2);
 
     subplot(1,3,3); hold on; 
     ax = gca(); ax.FontSize = fontSize;
     title('Acceleration','FontSize',fontSize+4);
-    xlabel('a_x','FontSize',fontSize+2); 
-    ylabel('a_y','FontSize',fontSize+2); 
-    zlabel('a_z','FontSize',fontSize+2);
+    xlabel('a_x [m/s^2]','FontSize',fontSize+2); 
+    ylabel('a_y [m/s^2]','FontSize',fontSize+2); 
+    zlabel('a_z [m/s^2]','FontSize',fontSize+2);
 
     % Plot of the Backward reachability sets
     % for i = 1 : length(Xj_list) 

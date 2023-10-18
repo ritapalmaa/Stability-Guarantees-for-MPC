@@ -2,7 +2,7 @@ function [model,X,U,D,RPI,lqr,Acl] = InitDrone(nx,nu,Ts,steps)
 % InitDrone - Function that initialize and set up the parameters in 3D
 %
 % Syntax:  
-%    [model,X,U,D,RPI,lqr,Acl] = InitDrone(nx,nu,Ts,simulation_steps)
+%    [model,X,U,D,RPI,lqr,Acl] = InitDrone(nx,nu,Ts,steps)
 %
 % Inputs:
 %    nx - state dimensions
@@ -68,22 +68,18 @@ X = CCGCartesian(B,A);
 % Input Set U 
 a_min = 0; b_max = Tmax;
 Ttil = a_min + 3;%(b_max-a_min)*rand();
-omega = 2*pi; %random value
+omega = 2*pi; % random value
 
 U.G = (Ttil/m)*omega*eye(nu); U.c = zeros(nu,1);
 U.A = zeros(0,nu); U.b = zeros(0,1); 
-U.idx = nu; U.type = 2;
-
-% Constraints Set G - by cartesian product
-G = CCGCartesian(X,U);
+U.type = 2; U.idx = nu;
 
 % Disturbances Set D related with aceleration
-D.G = [zeros(2*nu,nu); diag([1 1 1])];
+D.G = [zeros(2*nu,nu); eye(nu)];
 D.c = zeros(nx,1);
 D.A = zeros(0,nu); D.b = zeros(0,1);
-D.idx = nu; D.type = Inf;
+D.type = Inf; D.idx = nu;
 
 % Computing Terminal Set Xf - Feasible & Positive Invariant - by LQR
 RPI = CCGInnerRPI(Acl, D, steps);
 end
-

@@ -45,4 +45,5 @@ for i = flip(1 : length(Xj_list_obs))
 
     idx = idx+1;
 end
+legend('X_{i\times N}, i = 0, ...,N_c','X_{i}}, i = 1, ..., N\times N_c','O_{i\timesN}, i = 0, ...,N_c','O_{i}, i = 1, ..., N\times N_c');
 end

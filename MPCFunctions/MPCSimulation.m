@@ -1,4 +1,4 @@
-function path = MPCSimulation(controller,x0,Nc,model,Xj_list,N,terminal,idx,set_max) 
+function path = MPCSimulation(controller,x0,Nc,model,Xj_list,N,terminal,set_max) 
 % MPCSimulation - Function that simulates the operation of a MPC 
 % for a given system
 %
@@ -12,7 +12,6 @@ function path = MPCSimulation(controller,x0,Nc,model,Xj_list,N,terminal,idx,set_
 %    model - struct with the system model A and B matrices
 %    Xj_list - sequence of reachable sets 
 %    N - prediction horizon
-%    idx - index in the sequence where x0 belongs
 %    set_max - the maximum admissible sets to change Xf
 %
 % Outputs:
@@ -36,20 +35,18 @@ if flag == 0
 end
 
 % Simulation for the specified number of steps considering x0 location
-for kk = 1  : N*Nc+1 %kk = 1 : N*Nc %kk = length(Xj_list)-idx+1 
+for kk = 1  : N*Nc+1
     % Define the terminal set
     j = max(length(Xj_list)-kk-N+1,1); 
     new_Xf = AddZeros(Xj_list{j}, set_max); 
     
-    % Define the controller
+    % Define the controller if want to change the N for the last states
 %     if length(Xj_list)-kk-N+1 < 1
 %         i = min(i+1,N);
 %     end
-%     
-%     fprintf('kk=%i ',kk); fprintf('j=%i ',j); fprintf('i=%i\n ',i);
     
     % Run the controller with the horizon indentified
-    [solutions, diagnostics] = controller{i}{x0,new_Xf.G,new_Xf.c,new_Xf.A,new_Xf.b} 
+    [solutions, diagnostics] = controller{i}{x0,new_Xf.G,new_Xf.c,new_Xf.A,new_Xf.b}; 
     
     % Solutions
     u = solutions{1}; x = solutions{2};
@@ -63,7 +60,7 @@ for kk = 1  : N*Nc+1 %kk = 1 : N*Nc %kk = length(Xj_list)-idx+1
     % Compute next state and add to the trajectory
     x0 = model.A*x0 + model.B*u(:,1); 
     path = [path x0];  
-        
+    
     % Confirmation if the state already reached the mRPI in each run
     [~, flag] = terminal{x0};
     if flag == 0

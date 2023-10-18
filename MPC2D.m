@@ -1,4 +1,3 @@
-% CODE REVIEWED ON 03/01
 close all;
 %%
 yalmip('clear')
@@ -10,7 +9,7 @@ addpath('Functions');
 %%
 % Code's parameters
 obst_flag = 0; % 0-off or 1-on
-idx_obs = 11; % index where obstacle is introduced
+idx_obs = 4; % index where obstacle is introduced
 reduction = 1; % 0-off or 1-on
 n_dimensions = 2; % 2-dimensions or 3-dimensions plot
 %% MPC2D
@@ -18,15 +17,15 @@ n_dimensions = 2; % 2-dimensions or 3-dimensions plot
 nx = 6; nu = 2; 
 N = 4; Nc = 3; 
 steps = N*Nc-1;
-Ts = 0.1; %[s]
+Ts = 0.05; %[s]
 [model,X,U,D,RPI,lqr,Acl] = Init2D(nx,nu,Ts,steps);
 
 if obst_flag == 1
-    Obs.G = 1*diag([0.45 0.45 200 200 200 200]); Obs.c = zeros(nx,1); 
+    Obs.G = diag([0.45 0.45 200 200 200 200]); Obs.c = zeros(nx,1); 
     Obs.A = zeros(0,nx); Obs.b = zeros(0,1); 
     Obs.type = Inf; Obs.idx = nx;
     [set_Obs,a_Obs] = compileCCG(Obs); 
-end 
+end
 
 % Compute Region of Attraction
 Xj_list = BackwardReachabilitySets(RPI,X,U,model,nx,Nc,N);
@@ -54,7 +53,7 @@ end
 
 set_max = Xj_list{end};
 % Introduction of obstacles & computation of the new sequence of sets
-if obst_flag == 1  
+if obst_flag == 1
     Xj_list_obs = ForwardReachabilitySets(idx_obs,model,U,Xj_list,Obs);
     PlotSetObstacles(Xj_list, Xj_list_obs,N);
     Xj_list = Xj_list_obs;
@@ -62,7 +61,7 @@ if obst_flag == 1
     disp('Obstacles introduced');
 end
 
-ops = sdpsettings('solver','mosek'); ops2 = sdpsettings('solver','gurobi');%,'gurobi.ObjScale',-0.5);
+ops = sdpsettings('solver','mosek'); ops2 = sdpsettings('solver','gurobi');
 % Optimizer to search initial conditions 
 vector = sdpvar(nx,1); 
 in = {vector}; out = {a_Xj};
@@ -89,11 +88,11 @@ for i = 0 : N-1
 end
 disp('Optimizers computed.');
 %% Run MPC for different vertices in the Region of Atraction
-n_sim = 5; % number of Monte Carlo runs
+n_sim = 1; % number of Monte Carlo runs
 j = 0; % count the number of simulations
-v_min = 4.5; v_max = 2*v_min; % limits to search for a initial condition
+v_min = 3; v_max = 2*v_min; % limits to search for a initial condition
 
-while j < n_sim   
+while j < n_sim
     vector = -v_min + v_max*rand(nx,1);
     % Find vertex with mode 1. or 2.
     % 1. Boundary of RA
@@ -104,9 +103,8 @@ while j < n_sim
     % To consider multiple vertices
     if vertex ~= zeros(nx,1) 
         j = j+1;
-        
         % Define the initial condition
-        x0 = vertex;% + 3.05*vector;
+        x0 = vertex;% + 3*vector;
       
         % Analyse of the initial condition
         [~, flag] = confirmation{x0};
@@ -119,11 +117,10 @@ while j < n_sim
         
         % Find the larger set in which x0 belongs
 %         idx = FindSet(Xj_list,x0);
-%         idx = size(Xj_list,1);
         
         % Run the MPC with the initial condition x0
-        path = MPCSimulation(controller,x0,Nc,model,Xj_list,N,terminal,idx,set_max);
-               
+        path = MPCSimulation(controller,x0,Nc,model,Xj_list,N,terminal,set_max);
+
         if n_dimensions == 2
             subplot(1,3,1);
             plot(path(1,:),path(2,:),'-o','LineWidth',2);
