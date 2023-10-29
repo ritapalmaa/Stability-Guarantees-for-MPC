@@ -1,9 +1,9 @@
-function RPI = CCGInnerRPI(A, U, N)
+function RPI = CCGmRPI(A, U, N)
 %CCGInnerRPI - Function that calculates the inner Robust Positively 
 % Invariant set considering the closed-loop system and the disturbances.
 % 
 % Syntax:  
-%    RPI = CCGInnerRPI(A, U, N)
+%    RPI = CCGmRPI(A, U, N)
 %
 % Inputs:
 %    A - closed-loop matrix

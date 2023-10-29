@@ -1,10 +1,10 @@
-% CODE REVIEWED ON 03/01
 close all;
 %%
 clc, clear;
 yalmip('clear');
 %%
 addpath('CCGFunctions');
+addpath('Functions');
 n_dimensions = 3; % 2-dimensions or 3-dimensions (drone)
 %% Comparison CZs vs CCGs
 % Initialization
@@ -84,7 +84,7 @@ if n_dimensions == 2
         idx = idx+1;
     end
 
-    legend('X_4','X_3','X_2','X_1','X_f','CZ','CCG')
+    legend('X_4','X_3','X_2','X_1','X_f')
 else
     figure; plotargs = {'r','b'}; fontSize = 16;
 
@@ -139,6 +139,5 @@ else
         [set_Xj_plot,a_Xj_plot] = compileCCG(Xj_list{i});
         plot(set_Xj_plot,a_Xj_plot(nu*2+1:nx),plotargs{color});
     % end
-
     legend('CZ','CCG');
 end

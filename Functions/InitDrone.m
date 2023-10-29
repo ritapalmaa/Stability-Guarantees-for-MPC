@@ -81,5 +81,5 @@ D.A = zeros(0,nu); D.b = zeros(0,1);
 D.type = Inf; D.idx = nu;
 
 % Computing Terminal Set Xf - Feasible & Positive Invariant - by LQR
-RPI = CCGInnerRPI(Acl, D, steps);
+RPI = CCGmRPI(Acl, D, steps);
 end

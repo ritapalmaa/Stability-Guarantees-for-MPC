@@ -33,4 +33,3 @@ for i = 1 : (Nc*N)+1
     Xj = CCGIntersect2Sets(Xj_prev_est,X);
 end
 end
-
