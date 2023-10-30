@@ -4,14 +4,15 @@ The research was supervised by Prof. Daniel de Matos Silvestre and Prof. Rita Ma
 The code implements a Model Predictive Control (MPC) approach to generate optimal trajectories for autonomous drones, ensuring the stability of the controller by the innovative application of Constrained Convex Generators (CCGs) as the primary method for characterising the system's sets. 
 
 # Abstract
-The technological advances and growing interest in autonomous vehicles and their applications across various sectors have guided a new era. 
-The aerospace domain encompasses vehicles such as spacecrafts for satellite deployment, rocket launches, and Unmanned Aerial Vehicles (UAV) serving purposes like surveillance and transportation. 
-These areas demand more robust control strategies to guarantee that the vehicles can effectively interact with external environments and execute complex manoeuvres. 
-The traditional control methods may no longer meet the evolving requirements while ensuring feasibility, limiting the system from achieving optimal operational performance.
-Motivated by these challenges, the proposed approach implements an Model Predictive Control (MPC) with specific constraints to enforce the system to enter into an invariant set represented as a Constrained Convex Generator (CCG) for reduced conservatism. 
-In doing so, the controller inherits feasibility guarantees even with the presence of disturbances. 
-Moreover, it is also possible to have a description of the region of attraction for the system to reach the terminal set. 
-Simulation results validate the performance of MPC trajectories while confirming that the computational times are suitable for real-time applications.
+The technological advances and their application across various sectors together with the growing interest in autonomous vehicles mark the beginning of a new era for the latter.
+The aerospace domain encompasses different vehicles such as spacecrafts for satellite deployment, rocket launch, and Unmanned Aerial Vehicles (UAV) with purposes such as surveillance and transportation.
+Each of these areas demands more robust control strategies to ensure that the vehicles can interact efficiently with external environments and can execute complex manoeuvres.
+Contrarily, traditional control methods are no longer able to viably meet the evolving requirements, which limits the systems from achieving an optimal operational performance.
+
+Motivated by these challenges, the proposed approach implements a Model Predictive Control (MPC) with specific constraints to force the system to enter into an invariant set represented as a Constrained Convex Generator (CCG), which reduces the related conservatism.
+In doing so, the controller ensures its feasibility even with the presence of disturbances. 
+Moreover, it is also possible to obtain a description of the region of attraction for the system to reach the terminal set. 
+Simulation results validate the performance of MPC trajectories whilst confirming that the computational times are suitable for a real-time application.
 
 ## Keywords 
 Model Predictive Control (MPC), Constrained Convex Generators (CCGs), Region of Attraction, Robust Positively Invariant (RPI), Recursive Feasibility, Stability
