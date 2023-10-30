@@ -127,10 +127,10 @@ title('Acceleration','FontSize',fontSize+4);
 
 % Compile & plot RPI
 [set_RPI,a_RPI] = compileCCG(RPI);
-subplot(1,3,1); 
-plot(set_RPI,a_RPI(1:nu),'r'); 
-subplot(1,3,2); 
-plot(set_RPI,a_RPI(nu+1:nu*2),'r');
-subplot(1,3,3); 
-plot(set_RPI,a_RPI(nu*2+1:nx),'r'); 
+subplot(1,3,1); hold on;
+plot(set_RPI,a_RPI(1:nu),'b'); 
+subplot(1,3,2); hold on;
+plot(set_RPI,a_RPI(nu+1:nu*2),'b');
+subplot(1,3,3); hold on;
+plot(set_RPI,a_RPI(nu*2+1:nx),'b'); 
 end

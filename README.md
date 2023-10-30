@@ -65,7 +65,6 @@ In order to run this code, the external solver GUROBI (https://www.gurobi.com/do
 The CCGs are directly encoded in YALMIP using the Reach Toolbox (https://github.com/danielmsilvestre/ReachTool).
 
 # Results
-The document that has been submitted can be found in the primary directory, and it contains all the presented results.
 
 ## Sequence of backwards reachable sets
 The figure below displays the sets generated within the sequence (for a 2D simulation), ranging from the region of attraction (larger set) to the mRPI (smaller set).
