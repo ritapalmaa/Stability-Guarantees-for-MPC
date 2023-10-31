@@ -5,7 +5,7 @@ The code implements a Model Predictive Control (MPC) approach to generate optima
 
 # Abstract
 The technological advances and their application across various sectors together with the growing interest in autonomous vehicles mark the beginning of a new era for the latter.
-The aerospace domain encompasses different vehicles such as spacecrafts for satellite deployment, rocket launch, and Unmanned Aerial Vehicles (UAV) with purposes such as surveillance and transportation.
+The aerospace domain encompasses different vehicles such as spacecrafts for satellite deployment, rocket launch, and Unmanned Aerial Vehicle (UAV) with purposes such as surveillance and transportation.
 Each of these areas demands more robust control strategies to ensure that the vehicles can interact efficiently with external environments and can execute complex manoeuvres.
 Contrarily, traditional control methods are no longer able to viably meet the evolving requirements, which limits the systems from achieving an optimal operational performance.
 
